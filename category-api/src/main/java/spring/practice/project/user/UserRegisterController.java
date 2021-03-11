@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.practice.project.response.Response;
 
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@RequestMapping("/users")
 public class UserRegisterController {
 
     private UserRegisterService service;
@@ -21,7 +23,7 @@ public class UserRegisterController {
         this.service = service;
     }
 
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<Response> register(@RequestBody @Valid UserRegisterCommand command) {
         service.register(command);
         URI uri = URI.create("/register");
