@@ -42,3 +42,49 @@ public class UserRegisterController {
 }
 ```
 
+
+
+## 코드 리펙토링
+
+기존의 코드에서 Advice는 다음과 같았다.
+
+```java
+@ExceptionHandler(NoEqualsPassword2ConfirmPasswordException.class)
+public ResponseEntity<Response> handleNoEqualsPw2ConfirmPwExp() {
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new Response("No match password with confirm password"));
+}
+
+@ExceptionHandler(HttpMessageNotReadableException.class)
+public ResponseEntity<Response> handleInvalidJSONFormatExp() {
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new Response("Invalid JSON format"));
+}
+```
+
+잘못된 요청에 의해 `HttpStatus.BAD_REQUEST`로 동일하게 HTTP 상태를 반환하지만 반환할 때 메시지만 다른 형태로 전달해왔다.
+
+
+
+**이에 따른 중복된 코드가 너무 많아 이를 하나의 메서드로 묶어 메시지만 전달 받을 수 있도록 코드를 변경하였다.**
+
+```java
+@ExceptionHandler(MethodArgumentNotValidException.class)
+public ResponseEntity<Response> handleBindData(MethodArgumentNotValidException ex) {
+    String errorCodes = ex.getBindingResult().getAllErrors()
+        .stream()
+        .map(error -> error.getCodes()[0])
+        .collect(Collectors.joining("."));
+    return getBadRequestResponseEntity("errorCodes = " + errorCodes);
+}
+
+private ResponseEntity<Response> getBadRequestResponseEntity(final String message) {
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new Response(message));
+}
+```
+
+`getBadRequestResponseEntity()`는 BAD_REQUST로 동일한 상태를 반환하지만 메시지만 다른 처리를 위해서 정의해줬다.
