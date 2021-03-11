@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'spring5fs'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility=11
+targetCompatibility=11
+compileJava.options.encoding='UTF-8'
+
+ext {
+    // Basic
+    //spring_context_ver='5.0.2.RELEASE'
+
+    // Spring MVC
+    webmvc_ver='5.0.2.RELEASE'
+    jstl_ver='1.2'
+    servlet_ver='3.1.0'
+    jsp_ver='2.3.2-b02'
+
+    // JDBC
+    spring_jdbc_ver='5.0.2.RELEASE'
+    tomcat_ver='10.0.0'
+    pg_ver='42.1.4'
+
+    // AOP
+    aspectjVer='1.9.6'
+
+    // Logback
+    slf4j_api_ver='1.7.30'
+    logback_classic_ver='1.2.3'
+
+    // Validation
+    validation_ver='2.0.1.Final'
+    hibernate_validator_ver='6.0.7.Final'
+
+    // JSON
+    databind_ver='2.11.4'
+    datatype_ver='2.11.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Basic
+    //implementation group:'org.springframework', name:'spring-context', version:"${spring_context_ver}"
+
+    // Spring MVC
+    implementation group:'org.springframework', name:'spring-webmvc', version:"${webmvc_ver}"
+    implementation group:'javax.servlet', name:'jstl', version:"${jstl_ver}"
+    providedCompile group:'javax.servlet', name:'javax.servlet-api', version: "${servlet_ver}"
+    providedRuntime group:'javax.servlet.jsp', name:'javax.servlet.jsp-api', version:"${jsp_ver}"
+
+    // JDBC
+    implementation group:'org.springframework', name:'spring-jdbc', version: "${spring_jdbc_ver}"
+    implementation group:'org.apache.tomcat', name:'tomcat-jdbc', version:"${tomcat_ver}"
+    implementation group:'org.postgresql', name:'postgresql', version:"${pg_ver}"
+
+    // AOP
+    implementation group:'org.aspectj', name: 'aspectjweaver', version: "${aspectjVer}"
+
+    // Logback
+    implementation group:'org.slf4j', name:'slf4j-api', version:"${slf4j_api_ver}"
+    implementation group:'ch.qos.logback', name:'logback-classic', version:"${logback_classic_ver}"
+
+    // Validation
+    implementation group:'javax.validation', name:'validation-api', version:"${validation_ver}"
+    implementation group:'org.hibernate.validator', name:'hibernate-validator', version:"${hibernate_validator_ver}"
+
+    //JSON
+    implementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version:"${databind_ver}"
+    implementation group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-jsr310', version:"${datatype_ver}"
+}
