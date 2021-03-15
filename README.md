@@ -134,10 +134,21 @@
 - [ ] 카테고리 추가
 
   Request-URL : `POST /category`
+  
+  
+  
+- [ ] 카테고리 조회
 
+  Request-URL : `GET /category/{id}`
 
+  
+
+  - [ ] 카테고리 ID로 게시글 검색
+
+    Request-URL : `GET /category/{id}/board`
+
+    
 
 - [ ] 카테고리 수정
 
   Request-URL : `PATCH /category/{id}`
-
