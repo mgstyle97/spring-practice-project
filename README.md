@@ -49,7 +49,7 @@
 
 ### Entity-Relation Diagram
 
-![](C:\Users\mgsty\git\spring-practice-project\img\ERD.PNG)
+![](\img\ERD.PNG)
 
 
 
