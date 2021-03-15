@@ -49,7 +49,7 @@
 
 ### Entity-Relation Diagram
 
-![](\img\ERD.PNG)
+<img src="./img/ERD.PNG">
 
 
 
