@@ -6,12 +6,20 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import spring.practice.project.domain.category.exception.CategoryNotFoundException;
 import spring.practice.project.response.Response;
 
 import java.util.stream.Collectors;
 
 @RestControllerAdvice("spring.practice.project.domain.category")
 public class CategoryExceptionAdvice {
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<Response> handleNoCategory() {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new Response("No category data"));
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleBindData(MethodArgumentNotValidException ex) {

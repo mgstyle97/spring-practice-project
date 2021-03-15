@@ -1,10 +1,15 @@
 package spring.practice.project.domain.category;
 
+import spring.practice.project.domain.board.Board;
+
+import java.util.List;
+
 public class Category {
 
     private Long id;
     private String title;
     private String info;
+    private List<Board> boardList;
 
     public Category(final String title, final String info) {
         this.title = title;
@@ -33,5 +38,9 @@ public class Category {
 
     public String getInfo() {
         return this.info;
+    }
+
+    public void setBoardList(final List<Board> boardList) {
+        this.boardList = boardList;
     }
 }
