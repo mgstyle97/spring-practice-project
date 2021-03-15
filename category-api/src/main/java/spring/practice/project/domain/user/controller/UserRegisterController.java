@@ -8,11 +8,10 @@ import spring.practice.project.response.Response;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.UserDao;
 import spring.practice.project.domain.user.command.UserRegisterCommand;
-import spring.practice.project.domain.user.exception.MemberNotFoundException;
+import spring.practice.project.domain.user.exception.UserNotFoundException;
 import spring.practice.project.domain.user.service.UserRegisterService;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
@@ -28,8 +27,7 @@ public class UserRegisterController {
     @PostMapping
     public ResponseEntity<Response> register(@RequestBody @Valid UserRegisterCommand command) {
         service.register(command);
-        URI uri = URI.create("/register");
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Successfully register new user data"));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Successfully register new user"));
     }
 
     @GetMapping("/{id}")
@@ -37,7 +35,7 @@ public class UserRegisterController {
         UserDao userDao = service.getUserDao();
         User user = userDao.selectById(id);
         if(user == null) {
-            throw new MemberNotFoundException();
+            throw new UserNotFoundException();
         }
 
         return user;
