@@ -49,7 +49,7 @@ public class CategoryDao {
         return category;
     }
 
-    public List<Board> boardListSelectByCategoryId(final Long id) {
+    public List<Board> selectByCategoryIdBoardList(final Long id) {
         List<Board> results = this.jdbcTemplate.query(
                 "SELECT *\n" +
                         "FROM (\n" +

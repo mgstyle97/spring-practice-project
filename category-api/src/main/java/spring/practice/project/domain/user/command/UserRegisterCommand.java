@@ -1,8 +1,10 @@
 package spring.practice.project.domain.user.command;
 
+import spring.practice.project.domain.user.Command;
+
 import javax.validation.constraints.NotBlank;
 
-public class UserRegisterCommand {
+public class UserRegisterCommand implements Command {
 
     @NotBlank(message = "아이디를 입력해야 합니다.")
     private String id;

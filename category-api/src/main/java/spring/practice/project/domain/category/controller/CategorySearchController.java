@@ -30,7 +30,7 @@ public class CategorySearchController {
             throw new CategoryNotFoundException();
         }
 
-        List<Board> results = this.categoryDao.boardListSelectByCategoryId(id);
+        List<Board> results = this.categoryDao.selectByCategoryIdBoardList(id);
 
         return ResponseEntity.ok(results);
     }
