@@ -2,10 +2,12 @@ package spring.practice.project.domain.category;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import spring.practice.project.domain.board.Board;
+import spring.practice.project.domain.user.NotFoundException;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -30,21 +32,33 @@ public class CategoryDao {
     }
 
     public Category selectById(final Long id) {
-        Category category = this.jdbcTemplate.queryForObject(
-                "SELECT * FROM category WHERE id = ?",
-                this.rowMapper,
-                id
-        );
+        Category category;
+
+        try {
+            category = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM category WHERE id = ?",
+                    this.rowMapper,
+                    id
+            );
+        } catch (DataAccessException ex) {
+            throw new NotFoundException();
+        }
 
         return category;
     }
 
     public Category selectByTitle(final String title) {
-        Category category = this.jdbcTemplate.queryForObject(
-                "SELECT * FROM category WHERE title = ?",
-                this.rowMapper,
-                title
-        );
+        Category category;
+
+        try {
+            category = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM category WHERE title = ?",
+                    this.rowMapper,
+                    title
+            );
+        } catch (DataAccessException ex) {
+            throw new NotFoundException();
+        }
 
         return category;
     }

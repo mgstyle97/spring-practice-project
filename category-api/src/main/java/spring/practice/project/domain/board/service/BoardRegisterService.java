@@ -6,9 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.practice.project.domain.board.Board;
 import spring.practice.project.domain.board.BoardDao;
 import spring.practice.project.domain.board.command.BoardRegisterCommand;
-import spring.practice.project.domain.user.User;
-import spring.practice.project.domain.user.UserDao;
-import spring.practice.project.domain.user.exception.UserNotFoundException;
 
 @Component
 public class BoardRegisterService {

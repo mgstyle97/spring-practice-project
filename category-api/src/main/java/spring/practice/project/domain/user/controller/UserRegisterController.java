@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import spring.practice.project.domain.user.NotFoundException;
 import spring.practice.project.response.Response;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.UserDao;
 import spring.practice.project.domain.user.command.UserRegisterCommand;
-import spring.practice.project.domain.user.exception.UserNotFoundException;
 import spring.practice.project.domain.user.service.UserRegisterService;
 
 import javax.validation.Valid;
@@ -34,9 +34,6 @@ public class UserRegisterController {
     public User getUser(@PathVariable("id") @Valid String id) {
         UserDao userDao = service.getUserDao();
         User user = userDao.selectById(id);
-        if(user == null) {
-            throw new UserNotFoundException();
-        }
 
         return user;
     }

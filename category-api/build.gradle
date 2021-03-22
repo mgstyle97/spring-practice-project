@@ -17,13 +17,13 @@ ext {
     // Spring MVC
     webmvc_ver='5.0.2.RELEASE'
     jstl_ver='1.2'
-    servlet_ver='3.1.0'
+    servlet_ver='4.0.1'
     jsp_ver='2.3.2-b02'
 
     // JDBC
     spring_jdbc_ver='5.0.2.RELEASE'
     tomcat_ver='10.0.0'
-    pg_ver='42.1.4'
+    pg_ver='42.2.18'
 
     // AOP
     aspectjVer='1.9.6'
@@ -52,7 +52,7 @@ dependencies {
     // Spring MVC
     implementation group:'org.springframework', name:'spring-webmvc', version:"${webmvc_ver}"
     implementation group:'javax.servlet', name:'jstl', version:"${jstl_ver}"
-    providedCompile group:'javax.servlet', name:'javax.servlet-api', version: "${servlet_ver}"
+    providedRuntime group:'javax.servlet', name:'javax.servlet-api', version: "${servlet_ver}"
     providedRuntime group:'javax.servlet.jsp', name:'javax.servlet.jsp-api', version:"${jsp_ver}"
 
     // JDBC

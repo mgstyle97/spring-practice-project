@@ -2,6 +2,7 @@ package spring.practice.project.domain.user;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -38,8 +39,8 @@ public class UserDao {
                     rowMapper,
                     id
             );
-        } catch (Exception e) {
-            return null;
+        } catch (DataAccessException ex) {
+            throw new NotFoundException();
         }
 
         return user;
@@ -53,8 +54,8 @@ public class UserDao {
                     rowMapper,
                     nick
             );
-        } catch (Exception e) {
-            return null;
+        } catch (DataAccessException ex) {
+            throw new NotFoundException();
         }
 
         return user;
