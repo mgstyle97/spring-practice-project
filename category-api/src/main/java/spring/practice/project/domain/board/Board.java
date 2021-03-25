@@ -1,8 +1,10 @@
 package spring.practice.project.domain.board;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import spring.practice.project.domain.comment.Comment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Board {
 
@@ -14,6 +16,7 @@ public class Board {
     private boolean access;
     private Long views;
     private String writer;
+    private List<Comment> commentList;
 
     public Board(final String title, final String contents,
                  final boolean access, final String writer) {
@@ -81,5 +84,13 @@ public class Board {
 
     public void increaseViews() {
         this.views++;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<Comment> getCommentList() {
+        return this.commentList;
     }
 }

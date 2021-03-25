@@ -1,4 +1,4 @@
-package spring.practice.project.domain.user;
+package spring.practice.project.domain;
 
 public class NotFoundException  extends RuntimeException {
 }

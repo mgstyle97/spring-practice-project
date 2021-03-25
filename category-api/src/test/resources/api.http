@@ -1,10 +1,8 @@
-POST http://localhost:8080/users
-Content-Type: application/json
-
-{
-  "id": "test",
-  "password": "1234",
-  "confirmPassword": "1234",
-  "name": "test",
-  "nick": "test"
-}
+GET http://localhost:8080/board/1
+#Content-Type: application/json
+#
+#{
+#  "contents": "첫번째 댓글입니다.",
+#  "writer": "test",
+#  "boardId": 1
+#}

@@ -1,11 +1,14 @@
 package spring.practice.project.domain.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Comment {
 
     private Long id;
     private String contents;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime regDate;
     private boolean access;
     private String writer;

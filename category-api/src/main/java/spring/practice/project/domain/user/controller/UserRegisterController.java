@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spring.practice.project.domain.user.NotFoundException;
 import spring.practice.project.response.Response;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.UserDao;
@@ -27,7 +26,9 @@ public class UserRegisterController {
     @PostMapping
     public ResponseEntity<Response> register(@RequestBody @Valid UserRegisterCommand command) {
         service.register(command);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Successfully register new user"));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(new Response("Successfully register new user"));
     }
 
     @GetMapping("/{id}")

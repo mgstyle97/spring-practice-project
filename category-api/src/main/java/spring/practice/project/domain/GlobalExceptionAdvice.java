@@ -7,10 +7,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import spring.practice.project.domain.user.NotFoundException;
 import spring.practice.project.response.Response;
 
-import java.net.ConnectException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice

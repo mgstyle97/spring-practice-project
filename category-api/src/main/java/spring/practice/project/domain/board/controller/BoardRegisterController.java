@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.practice.project.domain.board.Board;
+import spring.practice.project.domain.board.BoardDao;
 import spring.practice.project.domain.board.service.BoardRegisterService;
 import spring.practice.project.domain.board.command.BoardRegisterCommand;
 import spring.practice.project.response.Response;
@@ -32,7 +33,9 @@ public class BoardRegisterController {
 
     @GetMapping("/{id}")
     public Board getBoards(@PathVariable("id") @Valid final Long id) {
-        Board board = service.getDao().selectById(id);
+        BoardDao boardDao = service.getDao();
+        Board board = boardDao.selectById(id);
+        board.setCommentList(boardDao.selectByBoardId2CommentList(id));
         board.increaseViews();
         service.getDao().update(board);
         return board;

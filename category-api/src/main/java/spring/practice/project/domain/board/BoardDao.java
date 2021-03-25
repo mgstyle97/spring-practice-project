@@ -8,11 +8,13 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import spring.practice.project.domain.comment.Comment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Component
 public class BoardDao {
@@ -59,6 +61,28 @@ public class BoardDao {
         );
 
         return board;
+    }
+
+    public List<Comment> selectByBoardId2CommentList(final Long id) {
+        List<Comment> commentList = this.jdbcTemplate.query(
+                "SELECT * FROM comment WHERE board_id = ?",
+                (ResultSet rs, int rowNum) -> {
+                    Comment comment = new Comment(
+                            rs.getString("contents"),
+                            rs.getBoolean("access"),
+                            rs.getString("writer"),
+                            rs.getLong("board_id")
+                    );
+
+                    comment.setId(rs.getLong("id"));
+                    comment.setRegDate(rs.getTimestamp("reg_date").toLocalDateTime());
+
+                    return comment;
+                },
+                id
+        );
+
+        return commentList;
     }
 
     public Long insert(final Board board) {

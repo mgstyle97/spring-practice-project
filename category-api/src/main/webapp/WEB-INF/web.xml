@@ -23,6 +23,7 @@
                 spring.practice.project.config.GlobalConfig
                 spring.practice.project.config.UserConfig
                 spring.practice.project.config.BoardConfig
+                spring.practice.project.config.CommentConfig
                 spring.practice.project.config.CategoryConfig
                 spring.practice.project.config.PropertyConfig
             </param-value>
