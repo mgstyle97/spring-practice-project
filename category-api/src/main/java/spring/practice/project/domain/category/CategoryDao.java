@@ -65,13 +65,13 @@ public class CategoryDao {
 
     public List<Board> selectByCategoryIdBoardList(final Long id) {
         List<Board> results = this.jdbcTemplate.query(
-                "SELECT *\n" +
-                        "FROM (\n" +
-                        "\tSELECT board_id\n" +
-                        "    FROM board_category\n" +
-                        "    WHERE category_id = ?\n" +
-                        ")BI, board\n" +
-                        "WHERE board.id = BI.board_id\n" +
+                "SELECT * " +
+                        "FROM ( " +
+                        "\tSELECT board_id " +
+                        "    FROM board_category " +
+                        "    WHERE category_id = ? " +
+                        ")BI, board " +
+                        "WHERE board.id = BI.board_id " +
                         "ORDER BY board.views DESC",
                 (ResultSet rs, int rowNum) -> {
                     Board board = new Board(
