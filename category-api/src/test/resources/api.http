@@ -1,8 +1,8 @@
-GET http://localhost:8080/board/1
+GET http://localhost:8080/login
 #Content-Type: application/json
 #
 #{
-#  "contents": "첫번째 댓글입니다.",
-#  "writer": "test",
-#  "boardId": 1
+#  "id": "test",
+#  "password": "1234",
+#  "isRememberId": true
 #}

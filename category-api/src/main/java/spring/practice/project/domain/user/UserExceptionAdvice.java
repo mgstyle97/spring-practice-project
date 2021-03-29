@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import spring.practice.project.exception.DuplicateNickException;
-import spring.practice.project.exception.DuplicateUserException;
-import spring.practice.project.exception.NoEqualsPassword2ConfirmPasswordException;
+import spring.practice.project.domain.user.exception.DuplicateNickException;
+import spring.practice.project.domain.user.exception.DuplicateUserException;
+import spring.practice.project.domain.user.exception.NoEqualsPassword2ConfirmPasswordException;
+import spring.practice.project.domain.user.exception.WrongIdPasswordException;
 import spring.practice.project.response.Response;
 
 @RestControllerAdvice
@@ -31,6 +32,13 @@ public class UserExceptionAdvice {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new Response("No match password with confirm password"));
+    }
+
+    @ExceptionHandler(WrongIdPasswordException.class)
+    public ResponseEntity<Response> handleWrongIdPwExp() {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new Response("Invalid id or password"));
     }
 
 }

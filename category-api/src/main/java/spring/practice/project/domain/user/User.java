@@ -74,4 +74,8 @@ public class User {
     public void setAdmin(final boolean admin) {
         isAdmin = admin;
     }
+
+    public boolean matchPassword(final String password) {
+        return this.password.equals(password);
+    }
 }

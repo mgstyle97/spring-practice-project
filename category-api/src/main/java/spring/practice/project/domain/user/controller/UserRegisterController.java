@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import spring.practice.project.domain.NotFoundException;
 import spring.practice.project.response.Response;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.UserDao;
@@ -35,6 +36,9 @@ public class UserRegisterController {
     public User getUser(@PathVariable("id") @Valid String id) {
         UserDao userDao = service.getUserDao();
         User user = userDao.selectById(id);
+        if(user == null) {
+            throw new NotFoundException();
+        }
 
         return user;
     }

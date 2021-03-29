@@ -41,7 +41,7 @@ public class UserDao {
                     id
             );
         } catch (DataAccessException ex) {
-            throw new NotFoundException();
+            return null;
         }
 
         return user;
@@ -56,7 +56,7 @@ public class UserDao {
                     nick
             );
         } catch (DataAccessException ex) {
-            throw new NotFoundException();
+            return null;
         }
 
         return user;
