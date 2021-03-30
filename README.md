@@ -68,6 +68,12 @@
 - [ ] 개인 정보 조회
 
   Request-URL : `GET /users/{id}`
+  
+  
+  
+- [ ] 사용자 정보 수정
+
+  Request_URL : `PATCH /users/{id}`
 
 
 
