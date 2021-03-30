@@ -72,8 +72,8 @@ public class UserDao {
 
     public void update(final User user) {
         jdbcTemplate.update(
-                "UPDATE users SET name = ?, password = ?, nick = ? WHERE id = ?",
-                user.getName(), user.getPassword(), user.getNick(), user.getId()
+                "UPDATE users SET name = ?, password = ?, nick = ?, modified_time = ? WHERE id = ?",
+                user.getName(), user.getPassword(), user.getNick(), user.getModifiedTime(), user.getId()
         );
     }
 

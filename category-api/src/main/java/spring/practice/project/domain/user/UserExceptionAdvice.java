@@ -16,14 +16,14 @@ public class UserExceptionAdvice {
     @ExceptionHandler(DuplicateUserException.class)
     public ResponseEntity<Response> handleDupIdExp() {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.CONFLICT)
                 .body(new Response("Duplicate user id"));
     }
 
     @ExceptionHandler(DuplicateNickException.class)
     public ResponseEntity<Response> handleDupNickExp() {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.CONFLICT)
                 .body(new Response("Duplicate user nick"));
     }
 

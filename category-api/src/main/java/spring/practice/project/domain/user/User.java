@@ -15,6 +15,7 @@ public class User {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime redDate;
     private boolean isAdmin;
+    private LocalDateTime modifiedTime;
 
     public User(final String id, final String password,
                 final String name, final String nick,
@@ -73,6 +74,14 @@ public class User {
 
     public void setAdmin(final boolean admin) {
         isAdmin = admin;
+    }
+
+    public LocalDateTime getModifiedTime() {
+        return this.modifiedTime;
+    }
+
+    public void setModifiedTime(final LocalDateTime modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
     public boolean matchPassword(final String password) {

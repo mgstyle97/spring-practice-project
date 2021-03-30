@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import spring.practice.project.domain.InvalidApproachException;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.command.LoginCommand;
 import spring.practice.project.domain.user.service.AuthService;
 import spring.practice.project.response.Response;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -35,7 +37,7 @@ public class LoginController {
         Cookie userIdCookie = new Cookie("ID", command.getId());
         userIdCookie.setPath("/");  // 모든 경로에서 접근 가능
         if(command.isRememberId()) {
-            userIdCookie.setMaxAge(60 * 60 * 24);
+            userIdCookie.setMaxAge(60 * 60);
         } else {
             userIdCookie.setMaxAge(0);
         }
@@ -45,13 +47,15 @@ public class LoginController {
     }
 
     @GetMapping
-    public ResponseEntity<?> cookieTest(@CookieValue(name = "ID", required = false) Cookie cookie) {
-        if(cookie != null) {
-            return ResponseEntity.ok(new Response("id - " + cookie.getValue()));
+    public ResponseEntity<?> sessionTest(HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        if(session.isNew()) {
+            session.invalidate();
+            throw new InvalidApproachException();
         }
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(new Response("Invalid Approach"));
+
+        return ResponseEntity.ok(session.getAttribute("user"));
     }
 
 }

@@ -21,6 +21,13 @@ public class GlobalExceptionAdvice {
                 .body(new Response("No data requested"));
     }
 
+    @ExceptionHandler({InvalidApproachException.class, NullPointerException.class})
+    public ResponseEntity<Response> handleInvalidApproachExp() {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new Response("Invalid Approach"));
+    }
+
     @ExceptionHandler(TypeMismatchException.class)
     public ResponseEntity<Response> handleTypeMismatch() {
         return ResponseEntity
@@ -36,14 +43,14 @@ public class GlobalExceptionAdvice {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Response> handleBindData(MethodArgumentNotValidException ex) {
+    public ResponseEntity<?> handleBindData(MethodArgumentNotValidException ex) {
         String errorCodes = ex.getBindingResult().getAllErrors()
                 .stream()
-                .map(error -> error.getCodes()[0])
+                .map(error -> error.getDefaultMessage())
                 .collect(Collectors.joining("."));
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new Response("errorCodes : " + errorCodes));
+                .body("errorCodes : " + errorCodes);
     }
 
 }

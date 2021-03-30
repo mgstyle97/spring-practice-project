@@ -60,7 +60,7 @@ public class UserRegisterCommand {
         return isAdmin;
     }
 
-    public void setAdmin(final boolean admin) {
+    public void setIsAdmin(final boolean admin) {
         isAdmin = admin;
     }
 

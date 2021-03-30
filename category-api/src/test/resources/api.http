@@ -1,8 +1,9 @@
-GET http://localhost:8080/login
-#Content-Type: application/json
-#
-#{
-#  "id": "test",
-#  "password": "1234",
-#  "isRememberId": true
-#}
+PATCH http://localhost:8080/users/test
+Content-Type: application/json
+
+{
+  "confirmPassword": "1234",
+  "changePassword": "12345",
+  "name": "test",
+  "nick": "test"
+}
