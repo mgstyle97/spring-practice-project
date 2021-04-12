@@ -2,6 +2,7 @@ package spring.practice.project.domain.board;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -44,11 +46,17 @@ public class BoardDao {
     }
 
     public Board selectById(final Long id) {
-        Board board = this.jdbcTemplate.queryForObject(
-                "SELECT * FROM board WHERE id = ?",
-                this.rowMapper,
-                id
-        );
+        Board board;
+
+        try {
+            board = this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM board WHERE id = ?",
+                    this.rowMapper,
+                    id
+            );
+        } catch (DataAccessException ex) {
+            return null;
+        }
 
         return board;
     }
@@ -115,10 +123,17 @@ public class BoardDao {
         );
     }
 
+    public void increseViews(final Long id) {
+        this.jdbcTemplate.update(
+                "UPDATE board SET views = views+1 WHERE id = ?",
+                id
+        );
+    }
+
     public void update(final Board board) {
         this.jdbcTemplate.update(
-                "UPDATE board SET title = ?, contents = ?, access = ?, views = ? WHERE id = ?",
-                board.getTitle(), board.getContents(), board.isAccess(), board.getViews(), board.getId()
+                "UPDATE board SET title = ?, contents = ?, access = ?, mod_date = ? WHERE id = ?",
+                board.getTitle(), board.getContents(), board.isAccess(), LocalDateTime.now(), board.getId()
         );
     }
 
@@ -126,6 +141,13 @@ public class BoardDao {
         this.jdbcTemplate.update(
                 "DELETE FROM board WHERE id = ?",
                 id
+        );
+    }
+
+    public void deleteToBoardCategory(final Long boardId) {
+        this.jdbcTemplate.update(
+                "DELETE FROM board_category WHERE board_id = ?",
+                boardId
         );
     }
 

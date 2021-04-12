@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import spring.practice.project.domain.NotFoundException;
+import spring.practice.project.domain.global.exception.NotFoundException;
 
 import java.sql.ResultSet;
 

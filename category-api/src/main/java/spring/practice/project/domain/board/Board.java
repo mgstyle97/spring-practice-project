@@ -93,4 +93,8 @@ public class Board {
     public List<Comment> getCommentList() {
         return this.commentList;
     }
+
+    public boolean isWriter(final String writer) {
+        return (this.writer.equals(writer));
+    }
 }

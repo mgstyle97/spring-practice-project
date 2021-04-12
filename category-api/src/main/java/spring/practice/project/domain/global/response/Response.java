@@ -1,4 +1,4 @@
-package spring.practice.project.response;
+package spring.practice.project.domain.global.response;
 
 public class Response {
 

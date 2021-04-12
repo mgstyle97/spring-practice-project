@@ -31,7 +31,7 @@ public class BoardRegisterService {
         Long boardId = dao.insert(board);
 
         if(command.getCategoryId() == null) {
-            command.setCategoryId(Long.valueOf(1));
+            command.setCategoryId(1L);
         }
 
         dao.insertToBoardCategory(boardId, command.getCategoryId());

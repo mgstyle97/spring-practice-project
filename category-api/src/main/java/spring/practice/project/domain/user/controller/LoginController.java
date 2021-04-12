@@ -1,14 +1,13 @@
 package spring.practice.project.domain.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spring.practice.project.domain.InvalidApproachException;
+import spring.practice.project.domain.global.exception.InvalidApproachException;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.command.LoginCommand;
 import spring.practice.project.domain.user.service.AuthService;
-import spring.practice.project.response.Response;
+import spring.practice.project.domain.global.response.Response;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

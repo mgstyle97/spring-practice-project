@@ -6,11 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.practice.project.domain.global.exception.NotFoundException;
 import spring.practice.project.domain.user.User;
 import spring.practice.project.domain.user.UserDao;
-import spring.practice.project.domain.user.command.LoginCommand;
+import spring.practice.project.domain.user.command.UserDeleteCommand;
 import spring.practice.project.domain.user.exception.WrongIdPasswordException;
 
 @Component
-public class AuthService {
+public class UserDeleteService {
 
     private UserDao dao;
 
@@ -20,7 +20,7 @@ public class AuthService {
     }
 
     @Transactional
-    public User authenticate(final LoginCommand command) {
+    public void delete(final UserDeleteCommand command) {
         User user = this.dao.selectById(command.getId());
         if(user == null) {
             throw new NotFoundException();
@@ -28,7 +28,8 @@ public class AuthService {
         if(!user.matchPassword(command.getPassword())) {
             throw new WrongIdPasswordException();
         }
-        return user;
+
+        this.dao.deleteById(command.getId());
     }
 
 }

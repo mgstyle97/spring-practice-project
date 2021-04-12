@@ -8,7 +8,7 @@ import spring.practice.project.domain.user.exception.DuplicateNickException;
 import spring.practice.project.domain.user.exception.DuplicateUserException;
 import spring.practice.project.domain.user.exception.NoEqualsPassword2ConfirmPasswordException;
 import spring.practice.project.domain.user.exception.WrongIdPasswordException;
-import spring.practice.project.response.Response;
+import spring.practice.project.domain.global.response.Response;
 
 @RestControllerAdvice
 public class UserExceptionAdvice {

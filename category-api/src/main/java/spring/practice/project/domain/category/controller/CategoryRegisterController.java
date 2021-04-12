@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.practice.project.domain.category.Category;
 import spring.practice.project.domain.category.commond.CategoryRegisterCommand;
 import spring.practice.project.domain.category.service.CategoryRegisterService;
-import spring.practice.project.response.Response;
+import spring.practice.project.domain.global.response.Response;
 
 import javax.validation.Valid;
 

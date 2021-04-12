@@ -5,11 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import spring.practice.project.domain.comment.command.CommentRegisterCommand;
 import spring.practice.project.domain.comment.service.CommentRegisterService;
-import spring.practice.project.response.Response;
+import spring.practice.project.domain.global.response.Response;
 
 import javax.validation.Valid;
 

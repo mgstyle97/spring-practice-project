@@ -3,13 +3,17 @@ package spring.practice.project.domain.board.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import spring.practice.project.domain.board.Board;
 import spring.practice.project.domain.board.BoardDao;
 import spring.practice.project.domain.board.service.BoardRegisterService;
 import spring.practice.project.domain.board.command.BoardRegisterCommand;
-import spring.practice.project.response.Response;
+import spring.practice.project.domain.global.exception.InvalidApproachException;
+import spring.practice.project.domain.global.response.Response;
+import spring.practice.project.domain.user.User;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
@@ -32,12 +36,13 @@ public class BoardRegisterController {
     }
 
     @GetMapping("/{id}")
-    public Board getBoards(@PathVariable("id") @Valid final Long id) {
+    @Transactional
+    public Board getBoard(@PathVariable("id") @Valid final Long id) {
         BoardDao boardDao = service.getDao();
         Board board = boardDao.selectById(id);
         board.setCommentList(boardDao.selectByBoardId2CommentList(id));
         board.increaseViews();
-        service.getDao().update(board);
+        boardDao.increseViews(id);
         return board;
     }
 

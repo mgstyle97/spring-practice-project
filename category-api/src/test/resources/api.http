@@ -1,9 +1,8 @@
-PATCH http://localhost:8080/users/test
+POST http://localhost:8080/board
 Content-Type: application/json
 
 {
-  "confirmPassword": "1234",
-  "changePassword": "12345",
-  "name": "test",
-  "nick": "test"
+  "title": "두 번쨰 게시글",
+  "contents": "두 번째 게시글입니다. 하지만 이 게시글은 곧 지워집니다.",
+  "writer": "test"
 }

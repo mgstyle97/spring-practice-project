@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import spring.practice.project.domain.board.Board;
-import spring.practice.project.domain.NotFoundException;
+import spring.practice.project.domain.global.exception.NotFoundException;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -41,7 +41,7 @@ public class CategoryDao {
                     id
             );
         } catch (DataAccessException ex) {
-            throw new NotFoundException();
+            return null;
         }
 
         return category;
@@ -57,7 +57,7 @@ public class CategoryDao {
                     title
             );
         } catch (DataAccessException ex) {
-            throw new NotFoundException();
+            return null;
         }
 
         return category;
@@ -100,8 +100,15 @@ public class CategoryDao {
 
     public void update(final Category category) {
         this.jdbcTemplate.update(
-                "UPDATE category SET info = ? WHERE title = ?",
-                category.getInfo(), category.getTitle()
+                "UPDATE category SET title = ?, info = ? WHERE id = ?",
+                category.getTitle(), category.getInfo(), category.getId()
+        );
+    }
+
+    public void deleteById(final Long id) {
+        this.jdbcTemplate.update(
+                "DELETE FROM category WHERE id = ?",
+                id
         );
     }
 

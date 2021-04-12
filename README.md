@@ -59,31 +59,37 @@
 
 ### 회원
 
-- [ ] 회원 가입
+- [x] 회원 가입
 
   Request-URL : `POST /users`
 
 
 
-- [ ] 개인 정보 조회
+- [x] 개인 정보 조회
 
   Request-URL : `GET /users/{id}`
   
   
   
-- [ ] 사용자 정보 수정
+- [x] 사용자 정보 수정
 
-  Request_URL : `PATCH /users/{id}`
+  Request-URL : `PATCH /users/{id}`
+  
+  
+  
+- [x] 사용자 삭제
+
+  Request-URL : `DELETE /users/{id}`
 
 
 
-- [ ] 로그인
+- [x] 로그인
 
   Request-URL : `POST /login`
 
 
 
-- [ ] 로그아웃
+- [x] 로그아웃
 
   Request-URL : `GET /logout`
 
@@ -91,13 +97,13 @@
 
 ### 게시글
 
-- [ ] 게시글 작성
+- [x] 게시글 작성
 
   Request-URL : `POST /board`
 
   
 
-- [ ] 게시글 조회
+- [x] 게시글 조회
 
   Request-URL : `GET /board/{id}`
 
@@ -117,19 +123,19 @@
 
 ### 댓글
 
-- [ ] 댓글 작성
+- [x] 댓글 작성
 
   Request-URL : `POST /board/{board_id}/comment`
 
   
 
-- [ ] 댓글 수정
+- [x] 댓글 수정
 
   Request-URL : `PATCH /board/{board_id}/comment/{comment_id}`
 
   
 
-- [ ] 댓글 삭제
+- [x] 댓글 삭제
 
   Request-URL : `DELETE /board/{board_id}/comment/{comment_id}`
 
@@ -137,24 +143,24 @@
 
 ### 카테고리
 
-- [ ] 카테고리 추가
+- [x] 카테고리 추가
 
   Request-URL : `POST /category`
   
   
   
-- [ ] 카테고리 조회
+- [x] 카테고리 조회
 
   Request-URL : `GET /category/{id}`
 
   
 
-  - [ ] 카테고리 ID로 게시글 검색
+  - [x] 카테고리 ID로 게시글 검색
 
     Request-URL : `GET /category/{id}/board`
 
     
 
-- [ ] 카테고리 수정
+- [x] 카테고리 수정
 
   Request-URL : `PATCH /category/{id}`
