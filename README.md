@@ -109,13 +109,13 @@
 
 
 
-- [ ] 게시글 수정
+- [x] 게시글 수정
 
   Request-URL : `PATCH /board/{id}`
 
 
 
-- [ ] 게시글 삭제
+- [x] 게시글 삭제
 
   Request-URL : `DELETE /board/{id}`
 
@@ -129,13 +129,13 @@
 
   
 
-- [x] 댓글 수정
+- [ ] 댓글 수정
 
   Request-URL : `PATCH /board/{board_id}/comment/{comment_id}`
 
   
 
-- [x] 댓글 삭제
+- [ ] 댓글 삭제
 
   Request-URL : `DELETE /board/{board_id}/comment/{comment_id}`
 
