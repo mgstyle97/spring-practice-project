@@ -1,8 +1,8 @@
-POST http://localhost:8080/board
+DELETE http://localhost:8080/board/1/comment/2
 Content-Type: application/json
 
 {
-  "title": "두 번쨰 게시글",
-  "contents": "두 번째 게시글입니다. 하지만 이 게시글은 곧 지워집니다.",
-  "writer": "test"
+  "id": 2,
+  "writer": "test",
+  "board_id": 1
 }

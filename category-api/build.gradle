@@ -74,7 +74,4 @@ dependencies {
     //JSON
     implementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version:"${databind_ver}"
     implementation group:'com.fasterxml.jackson.datatype', name:'jackson-datatype-jsr310', version:"${datatype_ver}"
-
-    // line-chat-bot
-    implementation group:'com.linecorp.bot', name:'line-bot-api-client', version:'2.1.0'
 }

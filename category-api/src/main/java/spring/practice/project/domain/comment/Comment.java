@@ -10,6 +10,8 @@ public class Comment {
     private String contents;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime regDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private LocalDateTime modDate;
     private boolean access;
     private String writer;
     private Long boardId;
@@ -44,6 +46,14 @@ public class Comment {
 
     public LocalDateTime getRegDate() {
         return this.regDate;
+    }
+
+    public void setModDate(final LocalDateTime modDate) {
+        this.modDate = modDate;
+    }
+
+    public LocalDateTime getModDate() {
+        return this.modDate;
     }
 
     public void setAccess(final boolean access) {

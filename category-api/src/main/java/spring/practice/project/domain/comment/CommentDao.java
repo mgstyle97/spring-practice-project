@@ -32,7 +32,7 @@ public class CommentDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Comment selectbyId(final Long id) {
+    public Comment selectById(final Long id) {
         Comment comment;
         try {
             comment = this.jdbcTemplate.queryForObject(
@@ -41,7 +41,7 @@ public class CommentDao {
                     id
             );
         } catch (DataAccessException ex) {
-            throw new NotFoundException();
+            return null;
         }
 
         return comment;
@@ -57,8 +57,8 @@ public class CommentDao {
 
     public void update(final Comment comment) {
         this.jdbcTemplate.update(
-                "UPDATE comment SET contents = ? WHERE id = ?",
-                comment.getContents(), comment.getId()
+                "UPDATE comment SET contents = ?, mod_date = ?, access = ? WHERE id = ?",
+                comment.getContents(), comment.getModDate(), comment.isAccess(), comment.getId()
         );
     }
 
